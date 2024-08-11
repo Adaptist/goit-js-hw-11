@@ -13,28 +13,31 @@ export function renderImages(images, galleryElement) {
         downloads 
     }) => {
         return `
-            <a href="${largeImageURL}">
-            <img src="${webformatURL}" 
-                alt="${tags}" 
-                title="${tags}" />
-            <ul class="gallery-list">
-                <li class="gallery-list-item">
-                    <p>Likes</p>
-                    <p>${likes}</p>
-                </li>
-                <li class="gallery-list-item">
-                    <p>Views</p>
-                    <p>${views}</p>
-                </li>
-                <li class="gallery-list-item">
-                    <p>Comments</p>
-                    <p>${comments}</p>
-                </li>
-                <li class="gallery-list-item">
-                    <p>Downloads</p>
-                    <p>${downloads}</p>
-                </li>
-            </ul></a>`;
+        <li class="gallery-list-item">
+            <a class="gallery-link" href="${largeImageURL}">
+                <img class="gallery-img" src="${webformatURL}" 
+                    alt="${tags}" 
+                    title="${tags}" />
+                <ul class="sub-list">
+                    <li class="sub-list-item">
+                        <b>Likes</b>
+                        <p>${likes}</p>
+                    </li>
+                    <li class="sub-list-item">
+                        <b>Views</b>
+                        <p>${views}</p>
+                    </li>
+                    <li class="sub-list-item">
+                        <b>Comments</b>
+                        <p>${comments}</p>
+                    </li>
+                    <li class="sub-list-item">
+                        <b>Downloads</b>
+                        <p>${downloads}</p>
+                    </li>
+                </ul>
+            </a>
+        </li>`;
     }).join('');
 
     galleryElement.insertAdjacentHTML('beforeend', markup);
