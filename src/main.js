@@ -7,10 +7,9 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
-const loader = document.querySelector('#loader');
+const loader = document.querySelector('.loader');
 
 // Инициализация SimpleLightbox для отображения изображений
 let lightbox = new SimpleLightbox('.gallery a', { /* options */ });
@@ -20,7 +19,7 @@ searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const query = event.currentTarget.elements.query.value.trim();
 
-    // Проверка, что поле ввода не пустое
+    // Проверка или поле ввода не пустое
     if (query === '') {
         iziToast.error({ message: 'Please enter a search term.' });
         return;
@@ -28,13 +27,14 @@ searchForm.addEventListener('submit', (event) => {
 
     // Очистка предыдущих результатов
     clearGallery(gallery);
+
     // Показать индикатор загрузки
     loader.style.display = 'block';
 
     // Выполнение запроса к API Pixabay
     fetchImages(query)
         .then(data => {
-            // Проверка, есть ли результаты
+            // Проверка или есть результаты
             if (data.hits.length === 0) {
                 iziToast.info({ message: 'Sorry, there are no images matching your search query. Please try again!' });
             } else {
@@ -43,12 +43,12 @@ searchForm.addEventListener('submit', (event) => {
                 lightbox.refresh();
             }
         })
+        // Обработка ошибок
         .catch(error => {
-            // Обработка ошибок
             iziToast.error({ message: error.message });
         })
+        // Скрываем индикатор загрузки
         .finally(() => {
-            // Скрыть индикатор загрузки
             loader.style.display = 'none';
         });
 });
