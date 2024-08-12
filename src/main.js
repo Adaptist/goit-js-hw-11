@@ -12,7 +12,7 @@ const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 
 // Инициализация SimpleLightbox для отображения изображений
-let lightbox = new SimpleLightbox('.gallery a', { /* options */ });
+let lightbox = new SimpleLightbox('.gallery a', {});
 
 // Добавление обработчика события на отправку формы
 searchForm.addEventListener('submit', (event) => {
